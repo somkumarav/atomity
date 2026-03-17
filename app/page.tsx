@@ -1,5 +1,7 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/ui/bread-crumb";
+import { Dropdown } from "../components/ui/dropdown";
 
 export default function Page() {
   return (
@@ -20,6 +22,15 @@ export default function Page() {
                   { label: "NameSpace A", value: "NamespaceA" },
                 ]}
                 activeCrumb='NamespaceA'
+              />
+              <Dropdown
+                options={[
+                  { label: "Last 7 Days", value: "7d" },
+                  { label: "Last 30 Days", value: "30d" },
+                  { label: "Last 90 Days", value: "90d" },
+                  { label: "Last Year", value: "1y" },
+                ]}
+                defaultValue={"30d"}
               />
             </section>
           </Card>
