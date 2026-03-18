@@ -10,7 +10,12 @@ export function Card({
   className?: string;
 }) {
   return (
-    <div className={cn("bg-white px-6 py-5 rounded-2xl shadow-sm", className)}>
+    <div
+      className={cn(
+        "bg-card text-foreground border border-border px-6 py-5 rounded-2xl shadow-sm",
+        className,
+      )}
+    >
       {children}
     </div>
   );

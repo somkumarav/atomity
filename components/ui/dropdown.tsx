@@ -8,15 +8,19 @@ import { CheckIcon, ChevronDown } from "lucide-react";
 export function Dropdown({
   options,
   defaultValue,
+  onSelect,
 }: {
   options: { label: string; value: string }[];
   defaultValue: string;
+  onSelect?: (value: string) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const selected = options.find((option) => option.value === defaultValue);
+  const [selectedValue, setSelectedValue] = useState(defaultValue);
+  const selected = options.find((option) => option.value === selectedValue);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const close = useCallback(() => setOpen(false), []);
+
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -37,24 +41,24 @@ export function Dropdown({
     };
   }, [close]);
 
-  const toggleShowOption = () => {
-    setOpen((prev) => !prev);
+  const handleSelect = (value: string) => {
+    setSelectedValue(value);
+    onSelect?.(value);
+    close();
   };
 
   return (
-    <div ref={containerRef} className={cn("relative inline-block")}>
+    <div ref={containerRef} className='relative inline-block z-50'>
       <button
-        onClick={toggleShowOption}
+        onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-all hover:cursor-pointer",
-          "bg-white border-neutral-200 text-neutral-700",
-          open && "border-[#00D97E] ring-2 ring-[#00D97E]/20",
-          "min-w-[150px] justify-between",
+          "flex items-center justify-between gap-2 px-4 py-2 rounded-xl border text-sm font-medium transition-all hover:cursor-pointer min-w-[150px] border-border",
+          open && "border-accent-foreground dark:border-accent/30",
         )}
       >
         <span className='flex items-center gap-2'>
-          <span className={cn(!selected && "text-neutral-400")}>
-            {selected?.label}
+          <span className={cn(!selected && "text-muted-foreground")}>
+            {selected?.label ?? "Select an option"}
           </span>
         </span>
         <motion.span
@@ -67,37 +71,35 @@ export function Dropdown({
       </button>
 
       <AnimatePresence>
-        {!open ? null : (
+        {open && (
           <motion.ul
             initial={{ opacity: 0, y: -6, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.97 }}
             transition={{ duration: 0.15, ease: "easeInOut" }}
-            className={
-              "absolute z-50 mt-1.5 min-w-full bg-white border border-neutral-100 rounded-xl shadow-lg shadow-black/5 py-1 overflow-hidden"
-            }
+            className='absolute z-50 mt-1.5 min-w-full border border-border rounded-xl shadow-lg shadow-black/5 py-1 overflow-hidden bg-popover'
           >
             {options.map((option, i) => {
-              const isSelected = option.value === defaultValue;
+              const isSelected = option.value === selectedValue;
               return (
                 <motion.li
                   key={option.value}
-                  onClick={toggleShowOption}
+                  onClick={() => handleSelect(option.value)}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.05 }}
                   className={cn(
-                    "flex items-center justify-between gap-2 px-4 py-2.5 text-sm cursor-pointer transition-colors",
+                    "group flex items-center justify-between space-x-2 px-4 py-2.5 text-sm cursor-pointer transition-colors",
                     isSelected
-                      ? "text-[#00994D] bg-[#00D97E]/08 font-medium"
-                      : "text-neutral-700 hover:bg-neutral-50",
+                      ? "text-accent-foreground bg-accent/10 font-medium"
+                      : "text-muted-foreground hover:bg-muted/50",
                   )}
                 >
                   <span className='flex items-center gap-2'>
                     {option.label}
                   </span>
                   {isSelected && (
-                    <span className='text-[#00D97E]'>
+                    <span className='text-accent-foreground'>
                       <CheckIcon size={16} strokeWidth={2} />
                     </span>
                   )}

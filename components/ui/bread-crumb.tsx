@@ -33,7 +33,7 @@ export function Breadcrumb({
               className='flex items-center gap-1'
             >
               {isActive ? (
-                <span className='text-sm font-semibold text-[#00994D]'>
+                <span className='text-sm font-semibold text-accent-foreground'>
                   {crumb.label}
                 </span>
               ) : (
@@ -41,13 +41,13 @@ export function Breadcrumb({
                   <button
                     onClick={onClick}
                     className={cn(
-                      "text-sm font-medium text-neutral-400 hover:text-neutral-700 transition-colors px-1",
+                      "text-sm font-medium text-muted-foreground hover:text-muted-foreground/50 transition-colors px-1",
                       isActive ? "cursor-default" : "cursor-pointer",
                     )}
                   >
                     {crumb.label}
                   </button>
-                  <span className='text-neutral-300'>
+                  <span className='text-muted-foreground'>
                     {<ChevronRight strokeWidth={2} size={16} />}
                   </span>
                 </>
