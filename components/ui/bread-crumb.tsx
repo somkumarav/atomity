@@ -48,7 +48,9 @@ export function Breadcrumb({
                     {crumb.label}
                   </button>
                   <span className='text-muted-foreground'>
-                    {<ChevronRight strokeWidth={2} size={16} />}
+                    {crumbs.length <= 1 ? null : (
+                      <ChevronRight strokeWidth={2} size={16} />
+                    )}
                   </span>
                 </>
               )}
