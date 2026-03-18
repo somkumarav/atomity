@@ -14,9 +14,9 @@ export default function Page() {
           </h1>
         </section>
 
-        <section className='space-y-2'>
-          <Card>
-            <section className='flex items-center justify-between'>
+        <section className='flex items-center justify-center'>
+          <Card className='w-4xl space-y-4'>
+            <div className='flex items-center justify-between'>
               <Breadcrumb
                 crumbs={[
                   { label: "Cluster A", value: "ClusterA" },
