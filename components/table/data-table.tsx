@@ -52,20 +52,30 @@ export const DataTable = ({
               delay: i * 0.08,
               ease: "easeOut",
             }}
-            className='border-b'
+            className='border-b '
           >
-            <TableCell className='font-semibold'>{row.name}</TableCell>
-            <TableCell className='text-right'>{row.cpu}</TableCell>
-            <TableCell className='text-right'>{row.ram}</TableCell>
-            <TableCell className='text-right'>{row.storage}</TableCell>
-            <TableCell className='text-right'>{row.network}</TableCell>
-            <TableCell className='text-right'>{row.gpu}</TableCell>
-            <TableCell className='text-right'>
+            <TableCell className='py-3 font-semibold'>{row.name}</TableCell>
+            <TableCell className='py-3 font-medium text-right text-muted'>
+              {row.cpu}
+            </TableCell>
+            <TableCell className='py-3 font-medium text-right text-muted'>
+              {row.ram}
+            </TableCell>
+            <TableCell className='py-3 font-medium text-right text-muted'>
+              {row.storage}
+            </TableCell>
+            <TableCell className='py-3 font-medium text-right text-muted'>
+              {row.network}
+            </TableCell>
+            <TableCell className='py-3 font-medium text-right text-muted'>
+              {row.gpu}
+            </TableCell>
+            <TableCell className='py-3 text-right'>
               <span className='text-[#00994D] font-medium bg-[#00D97E]/10 px-2 py-0.5 rounded-full text-xs'>
                 {String(row.efficiency)}
               </span>
             </TableCell>
-            <TableCell className='text-right font-semibold'>
+            <TableCell className='py-3 text-right  font-semibold'>
               {row.total}
             </TableCell>
           </TableRow>
