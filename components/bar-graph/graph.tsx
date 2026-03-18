@@ -1,12 +1,17 @@
+"use client";
+import { usePathname } from "next/navigation";
 import { Bar } from "./bar";
 
 export const Graph = ({
   bars,
 }: {
-  bars: { label: string; height: number }[];
+  bars: { id: number | string; label: string; height: number }[];
 }) => {
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter(Boolean);
+  const isPodLevel = segments.length === 2;
   const max =
-    Math.ceil(Math.max(...bars.map((bar) => bar.height), 1) / 1000) * 1000;
+    Math.ceil(Math.max(...bars.map((bar) => bar.height), 1) / 100) * 100;
   const gridLines = [25, 50, 75, 100];
 
   return (
@@ -30,9 +35,17 @@ export const Graph = ({
         ))}
       </div>
       <div className='flex h-full items-end justify-between w-full z-10 space-x-24 pb-6'>
-        {bars.map((bar, i) => {
+        {bars.map((bar) => {
           const height = (bar.height / max) * 100;
-          return <Bar key={i} label={bar.label} height={height} />;
+          return (
+            <Bar
+              key={bar.id}
+              label={bar.label}
+              height={height}
+              href={`${pathname === "/" ? "" : pathname}/${bar.id}`}
+              disabled={isPodLevel}
+            />
+          );
         })}
       </div>
     </div>
