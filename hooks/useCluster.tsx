@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getClusterInfo } from "../actions/cluster.action";
-import { formatCurrency } from "../lib/format-currency";
+import { getClusterInfo } from "@/actions/cluster.action";
+import { formatCurrency } from "@/lib/format-currency";
 
 export const useClusters = () => {
   return useQuery({
     queryKey: ["fetch-cluster"],
-    queryFn: async () => {
-      const res = await getClusterInfo();
-      return res;
+    queryFn: () => {
+      return getClusterInfo();
     },
     select: (res) => {
       if (!res) {
@@ -26,6 +25,7 @@ export const useClusters = () => {
           total: formatCurrency(item.total),
         })),
         graphData: res.map((item) => ({
+          id: item.id,
           label: item.name,
           height: item.total,
         })),
