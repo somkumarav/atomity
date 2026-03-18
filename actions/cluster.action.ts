@@ -1,6 +1,7 @@
 export const getClusterInfo = () => {
   return [
     {
+      id: 1,
       name: "Cluster A",
       cpu: 2463,
       ram: 1368,
@@ -11,6 +12,7 @@ export const getClusterInfo = () => {
       total: 6867,
     },
     {
+      id: 2,
       name: "Cluster B",
       cpu: 2127,
       ram: 1181,
@@ -21,6 +23,7 @@ export const getClusterInfo = () => {
       total: 5574,
     },
     {
+      id: 3,
       name: "Cluster C",
       cpu: 1733,
       ram: 962,
@@ -31,6 +34,7 @@ export const getClusterInfo = () => {
       total: 4664,
     },
     {
+      id: 4,
       name: "Cluster D",
       cpu: 1218,
       ram: 677,
@@ -43,9 +47,10 @@ export const getClusterInfo = () => {
   ];
 };
 
-export const getNameSpaceInfo = () => {
+export const getNameSpaceInfo = (id: number) => {
   return [
     {
+      id: 1,
       name: "Namespace A",
       cpu: 1231,
       ram: 684,
@@ -56,6 +61,7 @@ export const getNameSpaceInfo = () => {
       total: 3433,
     },
     {
+      id: 2,
       name: "Namespace B",
       cpu: 739,
       ram: 410,
@@ -66,6 +72,7 @@ export const getNameSpaceInfo = () => {
       total: 2060,
     },
     {
+      id: 3,
       name: "Namespace C",
       cpu: 369,
       ram: 205,
@@ -76,6 +83,7 @@ export const getNameSpaceInfo = () => {
       total: 1030,
     },
     {
+      id: 4,
       name: "Namespace D",
       cpu: 123,
       ram: 68,
@@ -84,6 +92,55 @@ export const getNameSpaceInfo = () => {
       gpu: 41,
       efficiency: 40,
       total: 343,
+    },
+  ];
+};
+
+export const getPodInfo = (id: number) => {
+  return [
+    {
+      id: 1,
+      name: "Pod A",
+      cpu: 862,
+      ram: 479,
+      storage: 86,
+      network: 107,
+      gpu: 410,
+      efficiency: 8,
+      total: 2403,
+    },
+    {
+      id: 2,
+      name: "Pod B",
+      cpu: 246,
+      ram: 136,
+      storage: 24,
+      network: 30,
+      gpu: 246,
+      efficiency: 40,
+      total: 686,
+    },
+    {
+      id: 3,
+      name: "Pod C",
+      cpu: 86,
+      ram: 47,
+      storage: 8,
+      network: 10,
+      gpu: 123,
+      efficiency: 35,
+      total: 240,
+    },
+    {
+      id: 4,
+      name: "Pod D",
+      cpu: 36,
+      ram: 20,
+      storage: 3,
+      network: 60,
+      gpu: 41,
+      efficiency: 70,
+      total: 103,
     },
   ];
 };
