@@ -33,7 +33,7 @@ export default function Page() {
                 ]}
                 defaultValue={"30d"}
               />
-            </section>
+            </div>
             <DataTable
               data={[
                 {
