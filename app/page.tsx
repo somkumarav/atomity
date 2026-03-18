@@ -38,7 +38,7 @@ export default function Page() {
             <div className='flex items-center justify-between'>
               <Breadcrumb
                 crumbs={[{ label: "Cluster A", value: "ClusterA" }]}
-                activeCrumb='NamespaceA'
+                activeCrumb='Cluster A'
               />
               <Dropdown
                 options={[
