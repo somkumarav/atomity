@@ -1,5 +1,5 @@
+import { ProviderWrapper } from "../lib/provider-wrapper";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,
@@ -9,9 +9,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className='bg-background text-foreground antialiased transition-colors duration-300'>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          {children}
-        </ThemeProvider>
+        <ProviderWrapper>{children}</ProviderWrapper>
       </body>
     </html>
   );
