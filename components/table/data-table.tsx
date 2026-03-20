@@ -93,7 +93,7 @@ export const DataTable = ({
             </TableCell>
             <TableCell className='py-3 text-right'>
               <span className='text-accent-foreground font-medium bg-accent-foreground/10 px-2 py-0.5 rounded-full text-xs'>
-                {row.efficiency}
+                {row.efficiency}%
               </span>
             </TableCell>
             <TableCell className='py-3 text-right font-semibold'>
